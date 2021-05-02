@@ -1,6 +1,6 @@
 # keywalk
 
-Keywalk let you to walk through HTML elements.
+Keywalk let you to walk through HTML elements via up/down arrow keys.
 
 ## Demo
 
