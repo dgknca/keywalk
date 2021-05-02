@@ -1,0 +1,66 @@
+/* Editor */
+.editor {
+  --code-gold: #f584ae;
+  --code-aqua: #eaca71;
+  --code-orange: #49d8c4;
+  --code-error-bg: rgba(255, 59, 59, 0.3);
+  --code-class-name: #feb8ff;
+  --code-keyword: yellow;
+  margin-top: 3rem;
+}
+
+pre {
+  max-width: 400px;
+  background: #334150 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-top: 1rem !important;
+  padding: 1rem !important;
+}
+
+code,
+pre {
+  text-shadow: none !important;
+  color: #e0e0e0 !important;
+  font-family: 'Fira Code', monospace !important;
+  font-size: 14px !important;
+}
+
+pre ::selection,
+code ::selection {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.token {
+  background: none !important;
+}
+
+.token.function,
+.token.punctuation {
+  color: #bed2ff;
+}
+
+.token.boolean,
+.token.number,
+.token.tag {
+  color: #fff;
+  font-weight: 400;
+}
+
+.token.operator,
+.token.attr-name {
+  color: var(--code-gold);
+}
+
+.token.class-name {
+  color: var(--code-class-name);
+}
+
+.token.keyword {
+  color: var(--code-keyword);
+}
+
+.token.string,
+.token.attr-value {
+  color: var(--code-aqua);
+}
