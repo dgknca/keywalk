@@ -33,12 +33,14 @@ Or include from CDN
 | `trigger`     | string | The element to listen the key event. (with CSS selector)                                                         | document |
 | `container`   | string | Root container of items. Keywalk will walk on nodes that are direct children of the `container`. <b>Required</b> |    -     |
 | `activeClass` | string | CSS class name of currently active item.                                                                         | 'active' |
+| `selectKey`   | string | The key that trigger the `onSelect()` event. Can be specified by a key name.                                     | 'Enter'  |
 
 ## Events
 
 | Event                      | Description                                                   |
 | :------------------------- | :------------------------------------------------------------ |
-| `onChange(element, index)` | Will return the HTML node and index of currently active item. |
+| `onWalk(element, index)`   | Will return the HTML node and index of currently active item. |
+| `onSelect(element, index)` | Will return the HTML node and index of selected item.         |
 
 ## Functions
 
@@ -62,7 +64,10 @@ Or include from CDN
   new Keywalk({
     trigger: '#input',
     container: '.list',
-    onChange: (element, index) => {
+    onWalk: (element, index) => {
+      console.log('active item: ', element, ' index: ', index)
+    },
+    onSelect: (element, index) => {
       console.log('selected item: ', element, ' index: ', index)
     }
   })

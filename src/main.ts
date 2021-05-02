@@ -1,11 +1,13 @@
 import { useKeydown } from './utils/useKeydown'
-import { OnChangeFunction } from './types'
+import { onWalkFunction, onSelectFunction } from './types'
 
 interface IArgs {
   trigger?: any
   container: string
   activeClass?: string
-  onChange?: OnChangeFunction
+  onWalk?: onWalkFunction
+  onSelect?: onSelectFunction
+  selectKey?: string
 }
 
 export default class Keywalk {
@@ -15,20 +17,23 @@ export default class Keywalk {
   items: NodeListOf<Element>
   focusedItemIdx: number
   activeClass: string
+  selectKey: string
 
   constructor(args: IArgs) {
-    const { activeClass = 'active', trigger = document, container } = args
+    const { activeClass = 'active', trigger = document, container, selectKey = 'Enter' } = args
 
     this.args = args
     this.trigger = document.querySelector(trigger) as HTMLInputElement
     this.container = container
     this.activeClass = activeClass
+    this.selectKey = selectKey
 
     this.items = document.querySelectorAll(`${container} > *`)
     this.focusedItemIdx = -1
 
     useKeydown(this, 'ArrowDown', () => this.focusNextItem())
     useKeydown(this, 'ArrowUp', () => this.focusPreviousItem())
+    useKeydown(this, this.selectKey, () => this.emitOnSelect(this.focusedItemIdx))
   }
 
   private focusPreviousItem(): void {
@@ -47,11 +52,15 @@ export default class Keywalk {
     this.removeAllActiveClasses(index)
     this.addActiveClass(index)
     this.focusedItemIdx = index
-    this.returnSelectedElement(index)
+    this.emitOnWalk(index)
   }
 
-  private returnSelectedElement(index: number): void {
-    this.args.onChange(this.items[index], index)
+  private emitOnWalk(index: number): void {
+    this.args.onWalk(this.items[index], index)
+  }
+
+  private emitOnSelect(index: number): void {
+    this.args.onSelect(this.items[index], index)
   }
 
   private removeAllActiveClasses(index: number): void {

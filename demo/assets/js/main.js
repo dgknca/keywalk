@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `const keywalk = new Keywalk({
   trigger: '#input',
   container: '.list',
-  onChange: (element, index) => {
+  onWalk: (element, index) => {
     // open the console in your devtools
     console.log(
       'selected item: ', element,
