@@ -22,7 +22,7 @@
     "build": "tsc && vite build",
     "serve": "vite preview",
     "lint": "eslint . --ext .ts --fix",
-    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "prettier-format": "prettier --config .prettierrc \"src/**/*.ts\" --write",
     "deploy": "gh-pages -d demo"
   },
   "devDependencies": {
