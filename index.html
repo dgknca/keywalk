@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/prism.css" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
+    <title>Keywalk | Demo</title>
+    <style>
+      .list > li.active {
+        background: #f0f0f0;
+      }
+
+      #reset {
+        margin-top: 10px;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <input type="text" id="input" placeholder="search on list" />
+        <ul class="list">
+          <li>Orange</li>
+          <li>Cherry</li>
+          <li>Banana</li>
+          <li>Apple</li>
+          <li>Pineapple</li>
+        </ul>
+      </div>
+      <button id="reset">Reset Selecting</button>
+
+      <div class="editor">
+        <pre><code class="language-html">&lt;input id="input"/>
+&lt;ul class="list">
+  &lt;li>Orange&lt;/li>
+  &lt;li>Cherry&lt;/li>
+  &lt;li>Banana&lt;/li>
+  &lt;li>Apple&lt;/li>
+  &lt;li>Pineapple&lt;/li>
+&lt;/ul>
+
+&lt;button id="reset">Reset Selecting&lt;/button></code></pre>
+        <pre><code class="language-js" id="js-editor"></code></pre>
+      </div>
+    </div>
+
+    <script src="../dist/keywalk.umd.js"></script>
+    <script src="./assets/js/prism.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script>
+      const keywalk = new Keywalk({
+        trigger: '#input',
+        container: '.list',
+        onChange: (element, index) => {
+          console.log('selected item: ', element, ' index: ', index)
+        }
+      })
+
+      document.querySelector('#reset').addEventListener('click', () => {
+        keywalk.reset()
+      })
+    </script>
+  </body>
+</html>
