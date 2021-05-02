@@ -72,11 +72,11 @@ Or include from CDN
 Reset the focus state:
 
 ```js
-  const keywalk = new Keywalk({
-    ...
-  })
+const keywalk = new Keywalk({
+  ...
+})
 
-  btn.addEventListener('click', () => {
-    keywalk.reset()
-  })
+btn.addEventListener('click', () => {
+  keywalk.reset()
+})
 ```
