@@ -23,7 +23,7 @@ export default class Keywalk {
     const { activeClass = 'active', trigger = document, container, selectKey = 'Enter' } = args
 
     this.args = args
-    this.trigger = document.querySelector(trigger) as HTMLInputElement
+    this.trigger = document.querySelector(trigger) as HTMLElement
     this.container = container
     this.activeClass = activeClass
     this.selectKey = selectKey
