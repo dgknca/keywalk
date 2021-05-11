@@ -52,7 +52,6 @@ export default class Keywalk {
     // create a new instance of 'MutationObserver' named 'observer',
     // passing it a callback function
     const observer = new MutationObserver((lst) => {
-      console.log('lst: ', lst);
       this.selectAllItems()
     })
 
