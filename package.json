@@ -1,6 +1,6 @@
 {
   "name": "keywalk",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "email" : "dgknca@gmail.com",
   "description": "Simple Notify is a pure Javascript library to show nice and customizable alert notifications.",
   "keywords": ["key move", "key walk", "select with key"],
