@@ -20,7 +20,12 @@ export default class Keywalk {
   selectKey: string
 
   constructor(args: IArgs) {
-    const { activeClass = 'active', trigger = document, container, selectKey = 'Enter' } = args
+    const {
+      activeClass = 'active',
+      trigger = document,
+      container,
+      selectKey = 'Enter'
+    } = args
 
     this.args = args
     this.trigger = document.querySelector(trigger) as HTMLElement
@@ -30,22 +35,38 @@ export default class Keywalk {
     this.selectKey = selectKey
 
     this.selectAllItems()
-    
+
     this.focusedItemIdx = -1
 
     useKeydown(this, 'ArrowDown', () => this.focusNextItem())
     useKeydown(this, 'ArrowUp', () => this.focusPreviousItem())
-    useKeydown(this, this.selectKey, () => this.emitOnSelect(this.focusedItemIdx))
+    useKeydown(this, this.selectKey, () =>
+      this.emitOnSelect(this.focusedItemIdx)
+    )
 
-    if (this.trigger instanceof HTMLInputElement) {
-      this.trigger.addEventListener('input', this.selectAllItems)
-    }
+    // identify an element to observe
+    const elementToObserve = document.querySelector(
+      this.container
+    ) as HTMLElement
+
+    // create a new instance of 'MutationObserver' named 'observer',
+    // passing it a callback function
+    const observer = new MutationObserver((lst) => {
+      console.log('lst: ', lst);
+      this.selectAllItems()
+    })
+
+    // call 'observe' on that MutationObserver instance,
+    // passing it the element to observe, and the options object
+    observer.observe(elementToObserve, {
+      characterData: false,
+      childList: true,
+      attributes: false
+    })
   }
 
   private selectAllItems(): void {
-    setTimeout(() => {
-      this.items = document.querySelectorAll(`${this.container} > *`)
-    }, 0)
+    this.items = document.querySelectorAll(`${this.container} > *`)
   }
 
   private focusPreviousItem(): void {
