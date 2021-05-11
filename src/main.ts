@@ -14,7 +14,7 @@ export default class Keywalk {
   args: any
   trigger?: any
   container: string
-  items: NodeListOf<Element>
+  items: NodeListOf<Element> | Array<any>
   focusedItemIdx: number
   activeClass: string
   selectKey: string
@@ -24,16 +24,28 @@ export default class Keywalk {
 
     this.args = args
     this.trigger = document.querySelector(trigger) as HTMLElement
+    this.items = []
     this.container = container
     this.activeClass = activeClass
     this.selectKey = selectKey
 
-    this.items = document.querySelectorAll(`${container} > *`)
+    this.selectAllItems()
+    
     this.focusedItemIdx = -1
 
     useKeydown(this, 'ArrowDown', () => this.focusNextItem())
     useKeydown(this, 'ArrowUp', () => this.focusPreviousItem())
     useKeydown(this, this.selectKey, () => this.emitOnSelect(this.focusedItemIdx))
+
+    if (this.trigger instanceof HTMLInputElement) {
+      this.trigger.addEventListener('input', this.selectAllItems)
+    }
+  }
+
+  private selectAllItems(): void {
+    setTimeout(() => {
+      this.items = document.querySelectorAll(`${this.container} > *`)
+    }, 0)
   }
 
   private focusPreviousItem(): void {
