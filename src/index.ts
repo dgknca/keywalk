@@ -63,6 +63,13 @@ export default class Keywalk {
       this.container instanceof Element
         ? Array.from(this.container.children)
         : document.querySelectorAll(`${this.container} > *`)
+
+    this.items.forEach((el: HTMLElement) => {
+      el.addEventListener('click', () => {
+        const index = Array.from(el.parentElement.children).indexOf(el)
+        this.onItemClicked(index)
+      })
+    })
   }
 
   private focusPreviousItem(): void {
@@ -82,6 +89,11 @@ export default class Keywalk {
     this.addActiveClass(index)
     this.focusedItemIdx = index
     this.emitOnWalk(index)
+  }
+
+  private onItemClicked(index: number): void {
+    this.focusItemByIndex(index)
+    this.emitOnSelect(index)
   }
 
   private emitOnWalk(index: number): void {
