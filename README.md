@@ -23,7 +23,7 @@ import Keywalk from 'keywalk'
 Or include from CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/keywalk@0.3.1">
+<script src="https://cdn.jsdelivr.net/npm/keywalk@0.4.1">
 ```
 
 ## Parameters

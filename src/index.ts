@@ -84,15 +84,15 @@ export default class Keywalk {
       : this.focusItemByIndex(0)
   }
 
-  private focusItemByIndex(index = 0): void {
+  private focusItemByIndex(index = 0, emitWalkEvent = true): void {
     this.removeAllActiveClasses(index)
     this.addActiveClass(index)
     this.focusedItemIdx = index
-    this.emitOnWalk(index)
+    if (emitWalkEvent) this.emitOnWalk(index)
   }
 
   private onItemClicked(index: number): void {
-    this.focusItemByIndex(index)
+    this.focusItemByIndex(index, false)
     this.emitOnSelect(index)
   }
 
