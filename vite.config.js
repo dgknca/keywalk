@@ -1,4 +1,5 @@
 const path = require('path')
+import dts from 'vite-plugin-dts'
 
 module.exports = {
   server: {
@@ -9,8 +10,9 @@ module.exports = {
       include: 'src/**/*.ts'
     },
     lib: {
-      entry: path.resolve(__dirname, 'src/main.ts'),
+      entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'Keywalk'
     }
-  }
+  },
+  plugins: [dts()]
 }

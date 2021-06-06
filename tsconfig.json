@@ -2,17 +2,21 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["ESNext", "DOM"],
     "moduleResolution": "Node",
     "strict": true,
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "types": ["vite/client"],
-    "noEmit": true,
+    "lib": ["ESNext", "DOM"],
+    "allowJs": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true
+    "declaration": true,
+    "declarationDir": "./dist",
+    "noImplicitAny": true,
+    "outDir": "./dist"
   },
-  "include": ["./src"]
+  "include": ["src/**/*.ts", "index.ts"],
+  "exclude": ["node_modules"]
 }

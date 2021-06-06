@@ -1,16 +1,23 @@
 {
   "name": "keywalk",
-  "version": "0.2.7",
-  "email" : "dgknca@gmail.com",
+  "version": "0.2.8",
+  "email": "dgknca@gmail.com",
   "description": "Simple Notify is a pure Javascript library to show nice and customizable alert notifications.",
-  "keywords": ["key move", "key walk", "select with key"],
+  "keywords": [
+    "key move",
+    "key walk",
+    "select with key"
+  ],
   "homepage": "https://dgknca.github.io/keywalk/",
   "repository": "https://github.com/dgknca/keywalk.git",
   "author": "Doğukan Çavuş",
   "license": "MIT",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/keywalk.umd.js",
   "module": "./dist/keywalk.es.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/keywalk.es.js",
@@ -32,8 +39,18 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "gh-pages": "^3.1.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "pinst": "^2.1.6",
     "prettier": "^2.2.1",
     "typescript": "^4.2.3",
-    "vite": "^2.2.3"
+    "vite": "^2.2.3",
+    "vite-plugin-dts": "^0.3.0"
+  },
+  "lint-staged": {
+    "*.{js,css,md}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }
